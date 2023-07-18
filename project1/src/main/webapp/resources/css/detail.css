@@ -1,0 +1,40 @@
+@charset "UTF-8";
+.detail-content{
+	margin: 0 auto;
+	width: 800px;
+	height: auto;
+	background-color: gray;
+	padding: 10px;
+	box-sizing: border-box;
+}
+.title{
+	width: 100%;
+	height: 50px;
+	line-height:50px;
+	font-size: large;
+}
+.name-bar{
+	width: 100%;
+	border-bottom: 1px solid black;
+	background-color: #c0c0c0;
+	height: 80px;
+	padding: 20px;
+	box-sizing: border-box;
+}
+.name, .like, .date, .ip{
+	width: 50%;
+	height:20px;
+	float: left;
+}
+.name, .like{
+	border-bottom: 1px solid black;
+}
+.like, .ip{
+	text-align: right;
+		
+}
+.content{
+	width:100%;
+	min-height:500px; 
+	height: auto;
+}
