@@ -5,6 +5,6 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.sssws03.pro1.BoardDTO" alias="boardDTO"/>
-		
+		<typeAlias type="com.sssws03.pro1.LoginDTO" alias="loginDTO"/>
 	</typeAliases>
 </configuration>

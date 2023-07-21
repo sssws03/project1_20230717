@@ -28,3 +28,11 @@ nav li:hover {
 	background-color: #F2F5A9;
 	color:black;
 }
+.lir, .liw{
+	float: right;
+}
+.liw{
+	width: 300px;
+	overflow: hidden;
+	font-size:small;
+}
