@@ -8,12 +8,13 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="./css/board.css">
 <link rel="stylesheet" href="./css/menu.css">
+
 </head>
 <body>
 <%@ include file="menu.jsp" %>
 	<h1>보드</h1>
 	<img alt="" src="./img/cloverMain.png">
-	<a href="./index">index로 가기</a>
+	
 	
 	
 	<table>
@@ -35,6 +36,6 @@
 			</tr>
 		</c:forEach>
 	</table>
-
+	<button onclick="location.href='./write'">글쓰기</button>
 </body>
 </html>

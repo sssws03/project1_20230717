@@ -8,6 +8,8 @@
 			<li onclick="link('board2')">게시판2</li>
 			<li onclick="link('mooni')">문의사항</li>
 			<li onclick="link('notice')">공지</li>
+			<li onclick="link('login')">로그인</li>
+			
 		</ul>
 	</nav>
 	<div style="height: 50px; width: 100%;"></div>

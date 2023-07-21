@@ -11,9 +11,22 @@
 	</select>
 	
 	<!-- # {변수명}을 적어주면 변수가 들어가요 -->
-	<select id="detail" parameterType="String" resultType="BoardDTO">
+	<select id="detail" parameterType="Integer" resultType="BoardDTO">
 		SELECT * FROM board WHERE bno=#{bno}
-		
 	</select>	
 
+<!-- insert는 result가 없습니다 -->
+	<insert id="write" parameterType="boardDTO">
+		INSERT INTO board (btitle, bcontent, bwrite, bip)
+		VALUES (#{btitle }, #{bcontent }, #{bwrite}, #{bip})
+	</insert>
+	
+	<delete id="delete" parameterType="boardDTO">
+	DELETE FROM board WHERE bno=#{bno}
+	</delete>
+	
+<update id="edit" parameterType="boardDTO">
+	UPDATE board SET btitle=#{btitle}, bcontent=#{bcontent}
+	WHERE bno=#{bno}
+</update>	
 </mapper>
