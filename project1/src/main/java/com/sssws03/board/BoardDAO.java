@@ -1,4 +1,4 @@
-package com.sssws03.pro1;
+package com.sssws03.board;
 
 import java.util.List;
 import java.util.Map;
@@ -17,12 +17,12 @@ public class BoardDAO {
 	@Named("sqlSession")
 	private SqlSession sqlSession;
 	
-	public List<Map<String, Object>> boardList(){
-		return sqlSession.selectList("board.boardList");
+	public List<BoardDTO> boardList(PageDTO page){
+		return sqlSession.selectList("board.boardList", page);
 	}
 
-	public BoardDTO detail(int bno) {
-		return sqlSession.selectOne("board.detail", bno); //앞에는 네임스페이스.아이디, 값
+	public BoardDTO detail(BoardDTO dto2) {
+		return sqlSession.selectOne("board.detail", dto2); //앞에는 네임스페이스.아이디, 값
 	}
 
 	public void write(BoardDTO dto) {
@@ -36,4 +36,13 @@ public class BoardDAO {
 	public void edit(BoardDTO dto) {
 		sqlSession.update("board.edit", dto);
 	}
-}
+
+	public void likeUp(BoardDTO dto2) {
+		sqlSession.update("board.likeUp", dto2);
+	}
+
+	public int totalCount() {
+		return sqlSession.selectOne("board.totalCount");
+	}
+
+	}

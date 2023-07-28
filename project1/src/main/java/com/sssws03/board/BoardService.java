@@ -1,4 +1,4 @@
-package com.sssws03.pro1;
+package com.sssws03.board;
 
 import java.util.List;
 import java.util.Map;
@@ -8,6 +8,8 @@ import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.sssws03.util.Util;
 
 @Service("boardService") // 8 boardService라고 이름을 지정해줌 8
 public class BoardService {
@@ -20,22 +22,32 @@ public class BoardService {
 	private Util util;
 
 	// 보드 리스트 불러오는 메소드
-	public List<Map<String, Object>> boardList() {
-		return boardDAO.boardList(); // 8 이제 DAO 가 대신 일한다 8
+	public List<BoardDTO> boardList(PageDTO page) {
+		return boardDAO.boardList(page); // 8 이제 DAO 가 대신 일한다 8
 	}
 
-	public BoardDTO detail(int bno) {
-		BoardDTO dto= boardDAO.detail(bno);
-		//검사 : .이 없거나, null이면 실행하지 않게 해주세요.
-		if (dto.getBip() !=null && dto.getBip().indexOf(".") != -1) {
-		//여기서 ip 뽑아오기;
-		String ip = dto.getBip();
-		//ip 중간에 하트 넣어주실 수 있죠?//172.30.1.19 ---> 172.♡.1.19
-		String[] ipArr = ip.split("[.]"); // ("\\.")
-		ipArr[1] = "♡";
-		//그거 다시 ip에 저장하기
-		dto.setBip(String.join(".", ipArr));
-		//끝.
+	public BoardDTO detail(BoardDTO dto2) {
+		//좋아요 수 +1 하기 기능을 넣어주겠습니다.
+		boardDAO.likeUp(dto2);
+		
+		BoardDTO dto= boardDAO.detail(dto2);
+		System.out.println(dto);
+		//System.out.println(dto.getBno());
+		//System.out.println(dto.getBip());
+		if (dto != null) {//내 글이 아닐때 null들어옵니다. 즉, null이 아닐때라고 검사해주세요.
+			
+			//검사 : .이 없거나, null이면 실행하지 않게 해주세요.
+			if (dto.getBip() !=null && dto.getBip().indexOf(".") != -1) {
+				//여기서 ip 뽑아오기;
+				String ip = dto.getBip();
+				//ip 중간에 하트 넣어주실 수 있죠?//172.30.1.19 ---> 172.♡.1.19
+				String[] ipArr = ip.split("[.]"); // ("\\.")
+				ipArr[1] = "♡";
+				//그거 다시 ip에 저장하기
+				dto.setBip(String.join(".", ipArr));
+				//끝.
+			}
+		
 		}
 		
 		return dto;
@@ -70,6 +82,10 @@ public class BoardService {
 		
 		boardDAO.edit(dto);
 		
+	}
+	//전체 글 수 가져오기 2023-07-26 sql 응용
+	public int totalCount() {
+		return boardDAO.totalCount();
 	}
 
 }

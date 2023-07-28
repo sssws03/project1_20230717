@@ -1,4 +1,4 @@
-package com.sssws03.pro1;
+package com.sssws03.index;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

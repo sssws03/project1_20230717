@@ -1,4 +1,4 @@
-package com.sssws03.pro1;
+package com.sssws03.util;
 
 import javax.servlet.http.HttpServletRequest;
 

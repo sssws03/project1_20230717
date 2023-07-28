@@ -1,4 +1,4 @@
-package com.sssws03.pro1;
+package com.sssws03.login;
 
 public class LoginDTO {
 	private int m_no, m_grade, count; //count = 로그인시 1or0이 옵니다.
