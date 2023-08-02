@@ -27,4 +27,12 @@
 	<select id="members" resultMap="join">
 	SELECT * FROM members
 	</select>
+	
+	<select id="checkID" parameterType="String" resultType="Integer">
+	 SELECT COUNT(*) FROM members WHERE m_id = #{id }
+	</select>
+	
+	<select id="boardList2" resultType="Map">
+		SELECT * FROM boardview LIMIT 0,10
+	</select>
 </mapper>

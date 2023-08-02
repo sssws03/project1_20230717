@@ -31,7 +31,7 @@ body {
 	float: left;
 }
 .label-in input{
-	height: 30px;
+	height: 36px;
 	text-align: center;
 	font-size: x-large;
 	color: green;
@@ -54,5 +54,19 @@ body {
 	text-align: center;
 }
 
+#id{
+	width: 400px; 
+}
+#idCheck{
+	width: 150px;
+}
 
+select {
+	width: calc(100% - 30px);
+	height: 40px;
+}
+
+label{
+	vertical-align: top;
+}
 
