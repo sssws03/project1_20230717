@@ -1,5 +1,6 @@
 package com.sssws03.login;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -29,7 +30,11 @@ public class LoginDAO {
 		return sqlSession.selectOne("login.checkID", id);
 	}
 
-	public List<Map<String, Object>> boardList2() {
-		return sqlSession.selectList("login.boardList2");
+	public List<Map<String, Object>> boardList2(int i) {
+		return sqlSession.selectList("login.boardList2",i);
+	}
+
+	public int totalCount() {
+		return sqlSession.selectOne("login.totalCount");
 	}
 }

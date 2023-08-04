@@ -83,6 +83,12 @@ public class BoardController {
 		// dto.setM_id(null); 글 상세보기 에서는 mid가 없어도 됩니다.
 
 		BoardDTO result = boardService.detail(dto);
+		//System.out.println(result.getCommentcount());
+		if (result.getCommentcount() > 0) {
+			//데이터베이스에 물어봐서 jsp로 보냅니다.
+			List<Map<String, Object>> commentsList = boardService.commentsList(bno);
+			model.addAttribute("commentsList", commentsList);
+		}
 		model.addAttribute("dto", result);
 
 		return "detail";

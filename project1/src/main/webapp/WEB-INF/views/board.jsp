@@ -39,7 +39,11 @@
 					<c:forEach items="${list }" var="row">
 						<tr onclick="location.href='./detail?bno=${row.bno }'">
 							<td class="td1">${row.bno }</td>
-							<td class="title">${row.btitle }</td>
+							<td class="title">${row.btitle }
+							<span>
+							<c:if test="${row.commentcount ne 0}">${row.commentcount} </c:if>
+								</span>							
+							</td>
 							<td class="td1">${row.m_name }</td>
 							<td class="td2">${row.bdate }</td>
 							<td class="td1">${row.blike }</td>

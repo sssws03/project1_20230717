@@ -49,6 +49,10 @@ td{
 tr:hover {
 	background-color: #F2F5A9
 }
+span{
+	color: red;
+	font-weight: bold;
+}
 
 
 
