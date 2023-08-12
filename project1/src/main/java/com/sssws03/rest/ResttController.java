@@ -3,6 +3,8 @@ package com.sssws03.rest;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +13,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sssws03.board.BoardService;
 import com.sssws03.login.LoginService;
+import com.sssws03.util.Util;
 
 @RestController
 public class ResttController {
 	
 	@Autowired
 	private LoginService loginService;
+	
+	@Autowired
+	private BoardService boardService;
+	
+	@Autowired
+	private Util util;
 	
 
 	// 아이디 중복검사 2023-08-02
@@ -29,6 +39,13 @@ public class ResttController {
 		json.put("result", result);
 
 		return json.toString();
+	}
+	
+	//자바스크립트로 만든 것.
+	@PostMapping("/checkID2")
+	public String checkID2(@RequestParam("id")String id) {
+		int result = loginService.checkID(id);
+		return result+"";
 	}
 	
 	//boardList2
@@ -66,6 +83,21 @@ public class ResttController {
 	
 	
 	
+	@PostMapping("/cdelR")
+	public String cdelR(@RequestParam Map<String, Object> map, HttpSession session) {
+		//if문 추가하기
+		int result = 0;
+		map.put("mid", session.getAttribute("mid"));
+		System.out.println(map);
+		
+		result = boardService.cdel(map);
+		JSONObject json = new JSONObject();
+		json.put("result", result);
+		
+		return json.toString();
+			}
+		
+	}
 	
 	
 	
@@ -76,5 +108,7 @@ public class ResttController {
 	
 	
 	
-}
+	
+	
+
 

@@ -194,4 +194,41 @@ public class BoardController {
 		return "redirect:detail?bno=" + dto.getBno(); // 보드로 이동하게 해주세요
 	}
 
+	//2323-08-07 프레임워크 프로그래밍
+	@GetMapping("/cdel") //bno, cno
+	public String cdel (@RequestParam Map<String, Object> map, HttpSession session){
+		//로그인 여부 검사
+		if (session.getAttribute("mid") != null) {
+			//값 들어왔는지 여부 검사
+			if(map.containsKey("bno") && map.get("cno")!=null &&
+			!(map.get("bno").equals("")) &&!(map.get("cno").equals(""))&&
+			util.isNum(map.get("bno")) && util.isNum(map.get("cno"))) {
+				
+				//System.out.println("여기로 들어왔습니다.");
+				map.put("mid", session.getAttribute("mid"));
+				int result = boardService.cdel(map);
+				System.out.println("삭제 결과: "+result);
+			}
+		}
+		return "redirect:/detail?bno="+map.get("bno");
+	}
+		//{recomment=댓글을 씁니다, bno=216, cno=76}
+		@PostMapping("/cedit")
+		public String cedit(@RequestParam Map<String, Object> map, HttpSession session) {
+			if (session.getAttribute("mid") !=null) {
+				if (map.get("bno") !=null && !(map.get("bno").equals("")) && 
+						map.containsKey("cno") && !(map.get("cno").equals("")) 	){
+						map.put("mid", session.getAttribute("mid"));
+					System.out.println(map);
+					int result = boardService.cedit(map);
+					System.out.println(result);
+					return "redirect:/detail?bno="+map.get("bno");
+				}else {
+					return "redirect:/board";
+				}
+			}else {
+				return "redirect:/login";
+			}
+		}
 }
+
